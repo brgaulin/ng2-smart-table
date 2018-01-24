@@ -13,15 +13,18 @@ import { CheckboxFilterComponent } from './filter-types/checkbox-filter.componen
 import { CompleterFilterComponent } from './filter-types/completer-filter.component';
 import { InputFilterComponent } from './filter-types/input-filter.component';
 import { SelectFilterComponent } from './filter-types/select-filter.component';
-const FILTER_COMPONENTS = [
+var FILTER_COMPONENTS = [
     FilterComponent,
     CheckboxFilterComponent,
     CompleterFilterComponent,
     InputFilterComponent,
     SelectFilterComponent,
 ];
-let FilterModule = class FilterModule {
-};
+var FilterModule = (function () {
+    function FilterModule() {
+    }
+    return FilterModule;
+}());
 FilterModule = __decorate([
     NgModule({
         imports: [
@@ -30,12 +33,8 @@ FilterModule = __decorate([
             ReactiveFormsModule,
             Ng2CompleterModule,
         ],
-        declarations: [
-            ...FILTER_COMPONENTS,
-        ],
-        exports: [
-            ...FILTER_COMPONENTS,
-        ],
+        declarations: FILTER_COMPONENTS.slice(),
+        exports: FILTER_COMPONENTS.slice(),
     })
 ], FilterModule);
 export { FilterModule };

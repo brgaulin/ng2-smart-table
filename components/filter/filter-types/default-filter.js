@@ -9,20 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Input, Output, EventEmitter } from '@angular/core';
 import { Column } from '../../../lib/data-set/column';
-export class DefaultFilter {
-    constructor() {
+var DefaultFilter = (function () {
+    function DefaultFilter() {
         this.delay = 300;
         this.filter = new EventEmitter();
     }
-    ngOnDestroy() {
+    DefaultFilter.prototype.ngOnDestroy = function () {
         if (this.changesSubscription) {
             this.changesSubscription.unsubscribe();
         }
-    }
-    setFilter() {
+    };
+    DefaultFilter.prototype.setFilter = function () {
         this.filter.emit(this.query);
-    }
-}
+    };
+    return DefaultFilter;
+}());
+export { DefaultFilter };
 __decorate([
     Input(),
     __metadata("design:type", String)

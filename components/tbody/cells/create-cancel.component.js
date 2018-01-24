@@ -10,22 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, EventEmitter } from '@angular/core';
 import { Grid } from '../../../lib/grid';
 import { Row } from '../../../lib/data-set/row';
-let TbodyCreateCancelComponent = class TbodyCreateCancelComponent {
-    onSave(event) {
+var TbodyCreateCancelComponent = (function () {
+    function TbodyCreateCancelComponent() {
+    }
+    TbodyCreateCancelComponent.prototype.onSave = function (event) {
         event.preventDefault();
         event.stopPropagation();
         this.grid.save(this.row, this.editConfirm);
-    }
-    onCancelEdit(event) {
+    };
+    TbodyCreateCancelComponent.prototype.onCancelEdit = function (event) {
         event.preventDefault();
         event.stopPropagation();
         this.row.isInEditing = false;
-    }
-    ngOnChanges() {
+    };
+    TbodyCreateCancelComponent.prototype.ngOnChanges = function () {
         this.saveButtonContent = this.grid.getSetting('edit.saveButtonContent');
         this.cancelButtonContent = this.grid.getSetting('edit.cancelButtonContent');
-    }
-};
+    };
+    return TbodyCreateCancelComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)
@@ -41,12 +44,7 @@ __decorate([
 TbodyCreateCancelComponent = __decorate([
     Component({
         selector: 'ng2-st-tbody-create-cancel',
-        template: `
-    <a href="#" class="ng2-smart-action ng2-smart-action-edit-save"
-        [innerHTML]="saveButtonContent" (click)="onSave($event)"></a>
-    <a href="#" class="ng2-smart-action ng2-smart-action-edit-cancel"
-        [innerHTML]="cancelButtonContent" (click)="onCancelEdit($event)"></a>
-  `,
+        template: "\n    <a href=\"#\" class=\"ng2-smart-action ng2-smart-action-edit-save\"\n        [innerHTML]=\"saveButtonContent\" (click)=\"onSave($event)\"></a>\n    <a href=\"#\" class=\"ng2-smart-action ng2-smart-action-edit-cancel\"\n        [innerHTML]=\"cancelButtonContent\" (click)=\"onCancelEdit($event)\"></a>\n  ",
     })
 ], TbodyCreateCancelComponent);
 export { TbodyCreateCancelComponent };

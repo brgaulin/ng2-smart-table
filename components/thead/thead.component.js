@@ -10,18 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
-let Ng2SmartTableTheadComponent = class Ng2SmartTableTheadComponent {
-    constructor() {
+var Ng2SmartTableTheadComponent = (function () {
+    function Ng2SmartTableTheadComponent() {
         this.sort = new EventEmitter();
         this.selectAllRows = new EventEmitter();
         this.create = new EventEmitter();
         this.filter = new EventEmitter();
     }
-    ngOnChanges() {
+    Ng2SmartTableTheadComponent.prototype.ngOnChanges = function () {
         this.isHideHeader = this.grid.getSetting('hideHeader');
         this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
-    }
-};
+    };
+    return Ng2SmartTableTheadComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)

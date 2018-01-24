@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, Output, EventEmitter, } from '@angular/core';
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
-let Ng2SmartTableTbodyComponent = class Ng2SmartTableTbodyComponent {
-    constructor() {
+var Ng2SmartTableTbodyComponent = (function () {
+    function Ng2SmartTableTbodyComponent() {
         this.save = new EventEmitter();
         this.cancel = new EventEmitter();
         this.edit = new EventEmitter();
@@ -23,7 +23,7 @@ let Ng2SmartTableTbodyComponent = class Ng2SmartTableTbodyComponent {
         this.multipleSelectRow = new EventEmitter();
         this.rowHover = new EventEmitter();
     }
-    ngOnChanges() {
+    Ng2SmartTableTbodyComponent.prototype.ngOnChanges = function () {
         this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
         this.showActionColumnLeft = this.grid.showActionColumn('left');
         this.mode = this.grid.getSetting('mode');
@@ -33,8 +33,9 @@ let Ng2SmartTableTbodyComponent = class Ng2SmartTableTbodyComponent {
         this.isActionEdit = this.grid.getSetting('actions.edit');
         this.isActionDelete = this.grid.getSetting('actions.delete');
         this.noDataMessage = this.grid.getSetting('noDataMessage');
-    }
-};
+    };
+    return Ng2SmartTableTbodyComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)

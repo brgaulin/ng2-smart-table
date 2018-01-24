@@ -1,3 +1,13 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,26 +19,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { DefaultEditor } from './default-editor';
-let InputEditorComponent = class InputEditorComponent extends DefaultEditor {
-    constructor() {
-        super();
+var InputEditorComponent = (function (_super) {
+    __extends(InputEditorComponent, _super);
+    function InputEditorComponent() {
+        return _super.call(this) || this;
     }
-};
+    return InputEditorComponent;
+}(DefaultEditor));
 InputEditorComponent = __decorate([
     Component({
         selector: 'input-editor',
         styles: [":host input,:host textarea{width:100%;line-height:normal;padding:.375em .75em} /*# sourceMappingURL=editor.component.css.map */ "],
-        template: `
-    <input [ngClass]="inputClass"
-           class="form-control"
-           [(ngModel)]="cell.newValue"
-           [name]="cell.getId()"
-           [placeholder]="cell.getTitle()"
-           [disabled]="!cell.isEditable()"
-           (click)="onClick.emit($event)"
-           (keydown.enter)="onEdited.emit($event)"
-           (keydown.esc)="onStopEditing.emit()">
-    `,
+        template: "\n    <input [ngClass]=\"inputClass\"\n           class=\"form-control\"\n           [(ngModel)]=\"cell.newValue\"\n           [name]=\"cell.getId()\"\n           [placeholder]=\"cell.getTitle()\"\n           [disabled]=\"!cell.isEditable()\"\n           (click)=\"onClick.emit($event)\"\n           (keydown.enter)=\"onEdited.emit($event)\"\n           (keydown.esc)=\"onStopEditing.emit()\">\n    ",
     }),
     __metadata("design:paramtypes", [])
 ], InputEditorComponent);

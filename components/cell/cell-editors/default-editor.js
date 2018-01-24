@@ -9,13 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Output, EventEmitter, Input } from '@angular/core';
 import { Cell } from '../../../lib/data-set/cell';
-export class DefaultEditor {
-    constructor() {
+var DefaultEditor = (function () {
+    function DefaultEditor() {
         this.onStopEditing = new EventEmitter();
         this.onEdited = new EventEmitter();
         this.onClick = new EventEmitter();
     }
-}
+    return DefaultEditor;
+}());
+export { DefaultEditor };
 __decorate([
     Input(),
     __metadata("design:type", Cell)

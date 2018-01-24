@@ -10,11 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Column } from '../../../lib/data-set/column';
 import { DataSource } from '../../../lib/data-source/data-source';
-let ColumnTitleComponent = class ColumnTitleComponent {
-    constructor() {
+var ColumnTitleComponent = (function () {
+    function ColumnTitleComponent() {
         this.sort = new EventEmitter();
     }
-};
+    return ColumnTitleComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Column)
@@ -30,11 +31,7 @@ __decorate([
 ColumnTitleComponent = __decorate([
     Component({
         selector: 'ng2-st-column-title',
-        template: `
-    <div class="ng2-smart-title">
-      <ng2-smart-table-title [source]="source" [column]="column" (sort)="sort.emit($event)"></ng2-smart-table-title>
-    </div>
-  `,
+        template: "\n    <div class=\"ng2-smart-title\">\n      <ng2-smart-table-title [source]=\"source\" [column]=\"column\" (sort)=\"sort.emit($event)\"></ng2-smart-table-title>\n    </div>\n  ",
     })
 ], ColumnTitleComponent);
 export { ColumnTitleComponent };

@@ -9,15 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Grid } from '../../../lib/grid';
-let ActionsComponent = class ActionsComponent {
-    constructor() {
+var ActionsComponent = (function () {
+    function ActionsComponent() {
         this.create = new EventEmitter();
     }
-    ngOnChanges() {
+    ActionsComponent.prototype.ngOnChanges = function () {
         this.createButtonContent = this.grid.getSetting('add.createButtonContent');
         this.cancelButtonContent = this.grid.getSetting('add.cancelButtonContent');
-    }
-};
+    };
+    return ActionsComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)
@@ -29,14 +30,7 @@ __decorate([
 ActionsComponent = __decorate([
     Component({
         selector: 'ng2-st-actions',
-        template: `
-    <a href="#" class="ng2-smart-action ng2-smart-action-add-create"
-        [innerHTML]="createButtonContent"
-        (click)="$event.preventDefault();create.emit($event)"></a>
-    <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel"
-        [innerHTML]="cancelButtonContent"
-        (click)="$event.preventDefault();grid.createFormShown = false;"></a>
-  `,
+        template: "\n    <a href=\"#\" class=\"ng2-smart-action ng2-smart-action-add-create\"\n        [innerHTML]=\"createButtonContent\"\n        (click)=\"$event.preventDefault();create.emit($event)\"></a>\n    <a href=\"#\" class=\"ng2-smart-action ng2-smart-action-add-cancel\"\n        [innerHTML]=\"cancelButtonContent\"\n        (click)=\"$event.preventDefault();grid.createFormShown = false;\"></a>\n  ",
     })
 ], ActionsComponent);
 export { ActionsComponent };

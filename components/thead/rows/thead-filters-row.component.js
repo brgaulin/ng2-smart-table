@@ -10,18 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Grid } from '../../../lib/grid';
 import { DataSource } from '../../../lib/data-source/data-source';
-let TheadFitlersRowComponent = class TheadFitlersRowComponent {
-    constructor() {
+var TheadFitlersRowComponent = (function () {
+    function TheadFitlersRowComponent() {
         this.create = new EventEmitter();
         this.filter = new EventEmitter();
     }
-    ngOnChanges() {
+    TheadFitlersRowComponent.prototype.ngOnChanges = function () {
         this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
         this.showActionColumnLeft = this.grid.showActionColumn('left');
         this.showActionColumnRight = this.grid.showActionColumn('right');
         this.filterInputClass = this.grid.getSetting('filter.inputClass');
-    }
-};
+    };
+    return TheadFitlersRowComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)
@@ -41,25 +42,7 @@ __decorate([
 TheadFitlersRowComponent = __decorate([
     Component({
         selector: '[ng2-st-thead-filters-row]',
-        template: `
-    <th *ngIf="isMultiSelectVisible"></th>
-    <th ng2-st-add-button *ngIf="showActionColumnLeft"
-                          [grid]="grid"
-                          (create)="create.emit($event)">
-    </th>
-    <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
-      <ng2-smart-table-filter [source]="source"
-                              [column]="column"
-                              [inputClass]="filterInputClass"
-                              (filter)="filter.emit($event)">
-      </ng2-smart-table-filter>
-    </th>
-    <th ng2-st-add-button *ngIf="showActionColumnRight"
-                          [grid]="grid"
-                          [source]="source"
-                          (create)="create.emit($event)">
-    </th>
-  `,
+        template: "\n    <th *ngIf=\"isMultiSelectVisible\"></th>\n    <th ng2-st-add-button *ngIf=\"showActionColumnLeft\"\n                          [grid]=\"grid\"\n                          (create)=\"create.emit($event)\">\n    </th>\n    <th *ngFor=\"let column of grid.getColumns()\" class=\"ng2-smart-th {{ column.id }}\">\n      <ng2-smart-table-filter [source]=\"source\"\n                              [column]=\"column\"\n                              [inputClass]=\"filterInputClass\"\n                              (filter)=\"filter.emit($event)\">\n      </ng2-smart-table-filter>\n    </th>\n    <th ng2-st-add-button *ngIf=\"showActionColumnRight\"\n                          [grid]=\"grid\"\n                          [source]=\"source\"\n                          (create)=\"create.emit($event)\">\n    </th>\n  ",
     })
 ], TheadFitlersRowComponent);
 export { TheadFitlersRowComponent };

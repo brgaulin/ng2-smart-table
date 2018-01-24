@@ -19,7 +19,7 @@ import { SelectEditorComponent } from './cell-editors/select-editor.component';
 import { TextareaEditorComponent } from './cell-editors/textarea-editor.component';
 import { CustomViewComponent } from './cell-view-mode/custom-view.component';
 import { ViewCellComponent } from './cell-view-mode/view-cell.component';
-const CELL_COMPONENTS = [
+var CELL_COMPONENTS = [
     CellComponent,
     CustomEditComponent,
     DefaultEditComponent,
@@ -32,8 +32,11 @@ const CELL_COMPONENTS = [
     CustomViewComponent,
     ViewCellComponent,
 ];
-let CellModule = class CellModule {
-};
+var CellModule = (function () {
+    function CellModule() {
+    }
+    return CellModule;
+}());
 CellModule = __decorate([
     NgModule({
         imports: [
@@ -41,12 +44,8 @@ CellModule = __decorate([
             FormsModule,
             Ng2CompleterModule,
         ],
-        declarations: [
-            ...CELL_COMPONENTS,
-        ],
-        exports: [
-            ...CELL_COMPONENTS,
-        ],
+        declarations: CELL_COMPONENTS.slice(),
+        exports: CELL_COMPONENTS.slice(),
     })
 ], CellModule);
 export { CellModule };

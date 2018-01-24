@@ -12,8 +12,8 @@ import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
-let Ng2SmartTableComponent = class Ng2SmartTableComponent {
-    constructor() {
+var Ng2SmartTableComponent = (function () {
+    function Ng2SmartTableComponent() {
         this.settings = {};
         this.rowSelect = new EventEmitter();
         this.userRowSelect = new EventEmitter();
@@ -69,11 +69,11 @@ let Ng2SmartTableComponent = class Ng2SmartTableComponent {
                 display: true,
                 perPage: 10,
             },
-            rowClassFunction: () => ""
+            rowClassFunction: function () { return ""; }
         };
         this.isAllSelected = false;
     }
-    ngOnChanges(changes) {
+    Ng2SmartTableComponent.prototype.ngOnChanges = function (changes) {
         if (this.grid) {
             if (changes['settings']) {
                 this.grid.setSettings(this.prepareSettings());
@@ -92,49 +92,50 @@ let Ng2SmartTableComponent = class Ng2SmartTableComponent {
         this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
         this.isPagerDisplay = this.grid.getSetting('pager.display');
         this.rowClassFunction = this.grid.getSetting('rowClassFunction');
-    }
-    editRowSelect(row) {
+    };
+    Ng2SmartTableComponent.prototype.editRowSelect = function (row) {
         if (this.grid.getSetting('selectMode') === 'multi') {
             this.onMultipleSelectRow(row);
         }
         else {
             this.onSelectRow(row);
         }
-    }
-    onUserSelectRow(row) {
+    };
+    Ng2SmartTableComponent.prototype.onUserSelectRow = function (row) {
         if (this.grid.getSetting('selectMode') !== 'multi') {
             this.grid.selectRow(row);
             this.emitUserSelectRow(row);
             this.emitSelectRow(row);
         }
-    }
-    onRowHover(row) {
+    };
+    Ng2SmartTableComponent.prototype.onRowHover = function (row) {
         this.rowHover.emit(row);
-    }
-    multipleSelectRow(row) {
+    };
+    Ng2SmartTableComponent.prototype.multipleSelectRow = function (row) {
         this.grid.multipleSelectRow(row);
         this.emitUserSelectRow(row);
         this.emitSelectRow(row);
-    }
-    onSelectAllRows($event) {
+    };
+    Ng2SmartTableComponent.prototype.onSelectAllRows = function ($event) {
         this.isAllSelected = !this.isAllSelected;
         this.grid.selectAllRows(this.isAllSelected);
         this.emitUserSelectRow(null);
         this.emitSelectRow(null);
-    }
-    onSelectRow(row) {
+    };
+    Ng2SmartTableComponent.prototype.onSelectRow = function (row) {
         this.grid.selectRow(row);
         this.emitSelectRow(row);
-    }
-    onMultipleSelectRow(row) {
+    };
+    Ng2SmartTableComponent.prototype.onMultipleSelectRow = function (row) {
         this.emitSelectRow(row);
-    }
-    initGrid() {
+    };
+    Ng2SmartTableComponent.prototype.initGrid = function () {
+        var _this = this;
         this.source = this.prepareSource();
         this.grid = new Grid(this.source, this.prepareSettings());
-        this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
-    }
-    prepareSource() {
+        this.grid.onSelectRow().subscribe(function (row) { return _this.emitSelectRow(row); });
+    };
+    Ng2SmartTableComponent.prototype.prepareSource = function () {
         if (this.source instanceof DataSource) {
             return this.source;
         }
@@ -142,39 +143,40 @@ let Ng2SmartTableComponent = class Ng2SmartTableComponent {
             return new LocalDataSource(this.source);
         }
         return new LocalDataSource();
-    }
-    prepareSettings() {
+    };
+    Ng2SmartTableComponent.prototype.prepareSettings = function () {
         return deepExtend({}, this.defaultSettings, this.settings);
-    }
-    changePage($event) {
+    };
+    Ng2SmartTableComponent.prototype.changePage = function ($event) {
         this.resetAllSelector();
-    }
-    sort($event) {
+    };
+    Ng2SmartTableComponent.prototype.sort = function ($event) {
         this.resetAllSelector();
-    }
-    filter($event) {
+    };
+    Ng2SmartTableComponent.prototype.filter = function ($event) {
         this.resetAllSelector();
-    }
-    resetAllSelector() {
+    };
+    Ng2SmartTableComponent.prototype.resetAllSelector = function () {
         this.isAllSelected = false;
-    }
-    emitUserSelectRow(row) {
-        const selectedRows = this.grid.getSelectedRows();
+    };
+    Ng2SmartTableComponent.prototype.emitUserSelectRow = function (row) {
+        var selectedRows = this.grid.getSelectedRows();
         this.userRowSelect.emit({
             data: row ? row.getData() : null,
             isSelected: row ? row.getIsSelected() : null,
             source: this.source,
-            selected: selectedRows && selectedRows.length ? selectedRows.map((r) => r.getData()) : [],
+            selected: selectedRows && selectedRows.length ? selectedRows.map(function (r) { return r.getData(); }) : [],
         });
-    }
-    emitSelectRow(row) {
+    };
+    Ng2SmartTableComponent.prototype.emitSelectRow = function (row) {
         this.rowSelect.emit({
             data: row ? row.getData() : null,
             isSelected: row ? row.getIsSelected() : null,
             source: this.source,
         });
-    }
-};
+    };
+    return Ng2SmartTableComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Object)

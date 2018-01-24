@@ -7,8 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagerComponent } from './pager.component';
-let PagerModule = class PagerModule {
-};
+var PagerModule = (function () {
+    function PagerModule() {
+    }
+    return PagerModule;
+}());
 PagerModule = __decorate([
     NgModule({
         imports: [

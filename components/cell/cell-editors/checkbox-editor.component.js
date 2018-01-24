@@ -1,3 +1,13 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,30 +19,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { DefaultEditor } from './default-editor';
-let CheckboxEditorComponent = class CheckboxEditorComponent extends DefaultEditor {
-    constructor() {
-        super();
+var CheckboxEditorComponent = (function (_super) {
+    __extends(CheckboxEditorComponent, _super);
+    function CheckboxEditorComponent() {
+        return _super.call(this) || this;
     }
-    onChange(event) {
-        const trueVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().true) || true;
-        const falseVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().false) || false;
+    CheckboxEditorComponent.prototype.onChange = function (event) {
+        var trueVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().true) || true;
+        var falseVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().false) || false;
         this.cell.newValue = event.target.checked ? trueVal : falseVal;
-    }
-};
+    };
+    return CheckboxEditorComponent;
+}(DefaultEditor));
 CheckboxEditorComponent = __decorate([
     Component({
         selector: 'checkbox-editor',
         styles: [":host input,:host textarea{width:100%;line-height:normal;padding:.375em .75em} /*# sourceMappingURL=editor.component.css.map */ "],
-        template: `
-    <input [ngClass]="inputClass"
-           type="checkbox"
-           class="form-control"
-           [name]="cell.getId()"
-           [disabled]="!cell.isEditable()"
-           [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"
-           (click)="onClick.emit($event)"
-           (change)="onChange($event)">
-    `,
+        template: "\n    <input [ngClass]=\"inputClass\"\n           type=\"checkbox\"\n           class=\"form-control\"\n           [name]=\"cell.getId()\"\n           [disabled]=\"!cell.isEditable()\"\n           [checked]=\"cell.getValue() == (cell.getColumn().getConfig()?.true || true)\"\n           (click)=\"onClick.emit($event)\"\n           (change)=\"onChange($event)\">\n    ",
     }),
     __metadata("design:paramtypes", [])
 ], CheckboxEditorComponent);

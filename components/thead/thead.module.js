@@ -19,7 +19,7 @@ import { TitleComponent } from './cells/title/title.component';
 import { TheadFitlersRowComponent } from './rows/thead-filters-row.component';
 import { TheadFormRowComponent } from './rows/thead-form-row.component';
 import { TheadTitlesRowComponent } from './rows/thead-titles-row.component';
-const THEAD_COMPONENTS = [
+var THEAD_COMPONENTS = [
     ActionsComponent,
     ActionsTitleComponent,
     AddButtonComponent,
@@ -31,8 +31,11 @@ const THEAD_COMPONENTS = [
     TheadTitlesRowComponent,
     Ng2SmartTableTheadComponent,
 ];
-let THeadModule = class THeadModule {
-};
+var THeadModule = (function () {
+    function THeadModule() {
+    }
+    return THeadModule;
+}());
 THeadModule = __decorate([
     NgModule({
         imports: [
@@ -41,12 +44,8 @@ THeadModule = __decorate([
             FilterModule,
             CellModule,
         ],
-        declarations: [
-            ...THEAD_COMPONENTS,
-        ],
-        exports: [
-            ...THEAD_COMPONENTS,
-        ],
+        declarations: THEAD_COMPONENTS.slice(),
+        exports: THEAD_COMPONENTS.slice(),
     })
 ], THeadModule);
 export { THeadModule };

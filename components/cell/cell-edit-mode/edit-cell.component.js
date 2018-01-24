@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Cell } from '../../../lib/data-set/cell';
-let EditCellComponent = class EditCellComponent {
-    constructor() {
+var EditCellComponent = (function () {
+    function EditCellComponent() {
         this.inputClass = '';
         this.edited = new EventEmitter();
     }
-    onEdited(event) {
+    EditCellComponent.prototype.onEdited = function (event) {
         this.edited.next(event);
         return false;
-    }
-    getEditorType() {
+    };
+    EditCellComponent.prototype.getEditorType = function () {
         return this.cell.getColumn().editor && this.cell.getColumn().editor.type;
-    }
-};
+    };
+    return EditCellComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Cell)
@@ -37,20 +38,7 @@ __decorate([
 EditCellComponent = __decorate([
     Component({
         selector: 'table-cell-edit-mode',
-        template: `
-      <div [ngSwitch]="getEditorType()">
-        <table-cell-custom-editor *ngSwitchCase="'custom'"
-                                  [cell]="cell"
-                                  [inputClass]="inputClass"
-                                  (edited)="onEdited($event)">
-        </table-cell-custom-editor>
-        <table-cell-default-editor *ngSwitchDefault
-                                  [cell]="cell"
-                                  [inputClass]="inputClass"
-                                  (edited)="onEdited($event)">
-        </table-cell-default-editor>
-      </div>
-    `,
+        template: "\n      <div [ngSwitch]=\"getEditorType()\">\n        <table-cell-custom-editor *ngSwitchCase=\"'custom'\"\n                                  [cell]=\"cell\"\n                                  [inputClass]=\"inputClass\"\n                                  (edited)=\"onEdited($event)\">\n        </table-cell-custom-editor>\n        <table-cell-default-editor *ngSwitchDefault\n                                  [cell]=\"cell\"\n                                  [inputClass]=\"inputClass\"\n                                  (edited)=\"onEdited($event)\">\n        </table-cell-default-editor>\n      </div>\n    ",
     })
 ], EditCellComponent);
 export { EditCellComponent };

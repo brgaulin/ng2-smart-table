@@ -9,8 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Cell } from '../../../lib/data-set/cell';
-let ViewCellComponent = class ViewCellComponent {
-};
+var ViewCellComponent = (function () {
+    function ViewCellComponent() {
+    }
+    return ViewCellComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Cell)
@@ -19,13 +22,7 @@ ViewCellComponent = __decorate([
     Component({
         selector: 'table-cell-view-mode',
         changeDetection: ChangeDetectionStrategy.OnPush,
-        template: `
-    <div [ngSwitch]="cell.getColumn().type">
-        <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
-        <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
-        <div *ngSwitchDefault>{{ cell.getValue() }}</div>
-    </div>
-    `,
+        template: "\n    <div [ngSwitch]=\"cell.getColumn().type\">\n        <custom-view-component *ngSwitchCase=\"'custom'\" [cell]=\"cell\"></custom-view-component>\n        <div *ngSwitchCase=\"'html'\" [innerHTML]=\"cell.getValue()\"></div>\n        <div *ngSwitchDefault>{{ cell.getValue() }}</div>\n    </div>\n    ",
     })
 ], ViewCellComponent);
 export { ViewCellComponent };

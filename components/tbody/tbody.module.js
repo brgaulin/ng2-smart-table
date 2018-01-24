@@ -12,14 +12,17 @@ import { Ng2SmartTableTbodyComponent } from './tbody.component';
 import { TbodyCreateCancelComponent } from './cells/create-cancel.component';
 import { TbodyEditDeleteComponent } from './cells/edit-delete.component';
 import { TbodyCustomComponent } from './cells/custom.component';
-const TBODY_COMPONENTS = [
+var TBODY_COMPONENTS = [
     TbodyCreateCancelComponent,
     TbodyEditDeleteComponent,
     TbodyCustomComponent,
     Ng2SmartTableTbodyComponent
 ];
-let TBodyModule = class TBodyModule {
-};
+var TBodyModule = (function () {
+    function TBodyModule() {
+    }
+    return TBodyModule;
+}());
 TBodyModule = __decorate([
     NgModule({
         imports: [
@@ -27,12 +30,8 @@ TBodyModule = __decorate([
             FormsModule,
             CellModule,
         ],
-        declarations: [
-            ...TBODY_COMPONENTS,
-        ],
-        exports: [
-            ...TBODY_COMPONENTS,
-        ],
+        declarations: TBODY_COMPONENTS.slice(),
+        exports: TBODY_COMPONENTS.slice(),
     })
 ], TBodyModule);
 export { TBodyModule };

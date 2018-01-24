@@ -9,23 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Output, EventEmitter, Input } from '@angular/core';
 import { Cell } from '../../../lib/data-set/cell';
-export class EditCellDefault {
-    constructor() {
+var EditCellDefault = (function () {
+    function EditCellDefault() {
         this.inputClass = '';
         this.edited = new EventEmitter();
     }
-    onEdited(event) {
+    EditCellDefault.prototype.onEdited = function (event) {
         this.edited.next(event);
         return false;
-    }
-    onStopEditing() {
+    };
+    EditCellDefault.prototype.onStopEditing = function () {
         this.cell.getRow().isInEditing = false;
         return false;
-    }
-    onClick(event) {
+    };
+    EditCellDefault.prototype.onClick = function (event) {
         event.stopPropagation();
-    }
-}
+    };
+    return EditCellDefault;
+}());
+export { EditCellDefault };
 __decorate([
     Input(),
     __metadata("design:type", Cell)

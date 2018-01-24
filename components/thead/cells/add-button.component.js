@@ -10,19 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Grid } from '../../../lib/grid';
 import { DataSource } from '../../../lib/data-source/data-source';
-let AddButtonComponent = class AddButtonComponent {
-    constructor(ref) {
+var AddButtonComponent = (function () {
+    function AddButtonComponent(ref) {
         this.ref = ref;
         this.create = new EventEmitter();
     }
-    ngAfterViewInit() {
+    AddButtonComponent.prototype.ngAfterViewInit = function () {
         this.ref.nativeElement.classList.add('ng2-smart-actions-title', 'ng2-smart-actions-title-add');
-    }
-    ngOnChanges() {
+    };
+    AddButtonComponent.prototype.ngOnChanges = function () {
         this.isActionAdd = this.grid.getSetting('actions.add');
         this.addNewButtonContent = this.grid.getSetting('add.addButtonContent');
-    }
-    onAdd(event) {
+    };
+    AddButtonComponent.prototype.onAdd = function (event) {
         event.preventDefault();
         event.stopPropagation();
         if (this.grid.getSetting('mode') === 'external') {
@@ -33,8 +33,9 @@ let AddButtonComponent = class AddButtonComponent {
         else {
             this.grid.createFormShown = true;
         }
-    }
-};
+    };
+    return AddButtonComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)
@@ -50,10 +51,7 @@ __decorate([
 AddButtonComponent = __decorate([
     Component({
         selector: '[ng2-st-add-button]',
-        template: `
-    <a *ngIf="isActionAdd" href="#" class="ng2-smart-action ng2-smart-action-add-add"
-        [innerHTML]="addNewButtonContent" (click)="onAdd($event)"></a>
-  `,
+        template: "\n    <a *ngIf=\"isActionAdd\" href=\"#\" class=\"ng2-smart-action ng2-smart-action-add-add\"\n        [innerHTML]=\"addNewButtonContent\" (click)=\"onAdd($event)\"></a>\n  ",
     }),
     __metadata("design:paramtypes", [ElementRef])
 ], AddButtonComponent);

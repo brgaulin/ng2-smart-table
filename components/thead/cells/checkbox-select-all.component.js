@@ -10,8 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input } from '@angular/core';
 import { Grid } from '../../../lib/grid';
 import { DataSource } from '../../../lib/data-source/data-source';
-let CheckboxSelectAllComponent = class CheckboxSelectAllComponent {
-};
+var CheckboxSelectAllComponent = (function () {
+    function CheckboxSelectAllComponent() {
+    }
+    return CheckboxSelectAllComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Grid)
@@ -27,9 +30,7 @@ __decorate([
 CheckboxSelectAllComponent = __decorate([
     Component({
         selector: '[ng2-st-checkbox-select-all]',
-        template: `
-    <input type="checkbox" [ngModel]="isAllSelected">
-  `,
+        template: "\n    <input type=\"checkbox\" [ngModel]=\"isAllSelected\">\n  ",
     })
 ], CheckboxSelectAllComponent);
 export { CheckboxSelectAllComponent };

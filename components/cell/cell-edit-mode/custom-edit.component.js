@@ -1,3 +1,13 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,29 +19,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef, } from '@angular/core';
 import { EditCellDefault } from './edit-cell-default';
-let CustomEditComponent = class CustomEditComponent extends EditCellDefault {
-    constructor(resolver) {
-        super();
-        this.resolver = resolver;
+var CustomEditComponent = (function (_super) {
+    __extends(CustomEditComponent, _super);
+    function CustomEditComponent(resolver) {
+        var _this = _super.call(this) || this;
+        _this.resolver = resolver;
+        return _this;
     }
-    ngOnChanges(changes) {
+    CustomEditComponent.prototype.ngOnChanges = function (changes) {
+        var _this = this;
         if (this.cell && !this.customComponent) {
-            const componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().editor.component);
+            var componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().editor.component);
             this.customComponent = this.dynamicTarget.createComponent(componentFactory);
             // set @Inputs and @Outputs of custom component
             this.customComponent.instance.cell = this.cell;
             this.customComponent.instance.inputClass = this.inputClass;
-            this.customComponent.instance.onStopEditing.subscribe(() => this.onStopEditing());
-            this.customComponent.instance.onEdited.subscribe((event) => this.onEdited(event));
-            this.customComponent.instance.onClick.subscribe((event) => this.onClick(event));
+            this.customComponent.instance.onStopEditing.subscribe(function () { return _this.onStopEditing(); });
+            this.customComponent.instance.onEdited.subscribe(function (event) { return _this.onEdited(event); });
+            this.customComponent.instance.onClick.subscribe(function (event) { return _this.onClick(event); });
         }
-    }
-    ngOnDestroy() {
+    };
+    CustomEditComponent.prototype.ngOnDestroy = function () {
         if (this.customComponent) {
             this.customComponent.destroy();
         }
-    }
-};
+    };
+    return CustomEditComponent;
+}(EditCellDefault));
 __decorate([
     ViewChild('dynamicTarget', { read: ViewContainerRef }),
     __metadata("design:type", Object)
@@ -39,9 +53,7 @@ __decorate([
 CustomEditComponent = __decorate([
     Component({
         selector: 'table-cell-custom-editor',
-        template: `
-    <ng-template #dynamicTarget></ng-template>
-  `,
+        template: "\n    <ng-template #dynamicTarget></ng-template>\n  ",
     }),
     __metadata("design:paramtypes", [ComponentFactoryResolver])
 ], CustomEditComponent);

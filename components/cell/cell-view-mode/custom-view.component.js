@@ -9,40 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input, ComponentFactoryResolver, ViewChild, ViewContainerRef, } from '@angular/core';
 import { Cell } from '../../../lib/data-set/cell';
-let CustomViewComponent = class CustomViewComponent {
-    constructor(resolver) {
+var CustomViewComponent = (function () {
+    function CustomViewComponent(resolver) {
         this.resolver = resolver;
     }
-    ngOnInit() {
+    CustomViewComponent.prototype.ngOnInit = function () {
         if (this.cell && !this.customComponent) {
             this.createCustomComponent();
             this.callOnComponentInit();
             this.patchInstance();
         }
-    }
-    ngOnDestroy() {
+    };
+    CustomViewComponent.prototype.ngOnDestroy = function () {
         if (this.customComponent) {
             this.customComponent.destroy();
         }
-    }
-    createCustomComponent() {
-        const componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().renderComponent);
+    };
+    CustomViewComponent.prototype.createCustomComponent = function () {
+        var componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().renderComponent);
         this.customComponent = this.dynamicTarget.createComponent(componentFactory);
-    }
-    callOnComponentInit() {
-        const onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
+    };
+    CustomViewComponent.prototype.callOnComponentInit = function () {
+        var onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
         onComponentInitFunction && onComponentInitFunction(this.customComponent.instance);
-    }
-    patchInstance() {
+    };
+    CustomViewComponent.prototype.patchInstance = function () {
         Object.assign(this.customComponent.instance, this.getPatch());
-    }
-    getPatch() {
+    };
+    CustomViewComponent.prototype.getPatch = function () {
         return {
             value: this.cell.getValue(),
             rowData: this.cell.getRow().getData()
         };
-    }
-};
+    };
+    return CustomViewComponent;
+}());
 __decorate([
     Input(),
     __metadata("design:type", Cell)
@@ -54,9 +55,7 @@ __decorate([
 CustomViewComponent = __decorate([
     Component({
         selector: 'custom-view-component',
-        template: `
-    <ng-template #dynamicTarget></ng-template>
-  `,
+        template: "\n    <ng-template #dynamicTarget></ng-template>\n  ",
     }),
     __metadata("design:paramtypes", [ComponentFactoryResolver])
 ], CustomViewComponent);
