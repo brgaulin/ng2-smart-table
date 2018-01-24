@@ -13,4 +13,5 @@ git checkout pq
 rm -rf bundles/ node_modules/ lib/ dist/ng2-smart-table/README.md
 cp -R dist/ng2-smart-table/* .
 rm -rf dist/ package-lock.json
+git push internal
 ```
