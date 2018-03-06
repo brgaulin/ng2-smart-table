@@ -2255,7 +2255,8 @@ let AddButtonComponent = class AddButtonComponent {
         this.create = new EventEmitter();
     }
     ngAfterViewInit() {
-        this.ref.nativeElement.classList.add('ng2-smart-actions-title', 'ng2-smart-actions-title-add');
+        this.ref.nativeElement.classList.add('ng2-smart-actions-title');
+        this.ref.nativeElement.classList.add('ng2-smart-actions-title-add');
     }
     ngOnChanges() {
         this.isActionAdd = this.grid.getSetting('actions.add');
