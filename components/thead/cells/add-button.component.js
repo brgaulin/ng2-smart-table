@@ -16,7 +16,8 @@ var AddButtonComponent = (function () {
         this.create = new EventEmitter();
     }
     AddButtonComponent.prototype.ngAfterViewInit = function () {
-        this.ref.nativeElement.classList.add('ng2-smart-actions-title', 'ng2-smart-actions-title-add');
+        this.ref.nativeElement.classList.add('ng2-smart-actions-title');
+        this.ref.nativeElement.classList.add('ng2-smart-actions-title-add');
     };
     AddButtonComponent.prototype.ngOnChanges = function () {
         this.isActionAdd = this.grid.getSetting('actions.add');
