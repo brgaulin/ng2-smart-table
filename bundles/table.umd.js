@@ -3291,8 +3291,6 @@ var ServerDataSource = (function (_super) {
     return ServerDataSource;
 }(LocalDataSource));
 
-//# sourceMappingURL=index.js.map
-
 exports.DefaultEditor = DefaultEditor;
 exports.Cell = Cell;
 exports.LocalDataSource = LocalDataSource;
