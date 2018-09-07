@@ -102,6 +102,7 @@ export class Grid {
       newData = newData ? newData : row.getNewData();
       if (deferred.resolve.skipAdd) {
         this.createFormShown = false;
+        this.dataSet.createNewRow();
       } else {
         this.source.prepend(newData).then(() => {
           this.createFormShown = false;
