@@ -47,11 +47,18 @@ task(':build:table:release', sequenceTask(
 
 /** Builds components typescript in ES5, ES6 target. For specs Karma needs CJS output. */
 task(':build:table:ts:es5', tsBuildTask(tsconfigPath, { target: ScriptTarget.ES5 }));
-
+task(':build:table:ts:es6', tsBuildTask(tsconfigPath, { target: ScriptTarget.ES2015 }));
+task(':build:table:ts:spec', tsBuildTask(tsconfigPath, {
+  target: ScriptTarget.ES5, module: ModuleKind.CommonJS,
+}));
 
 /** Tasks to create a UMD or ES bundle */
 task(':build:table:bundle:umd', sequenceTask(
   ':build:table:ts:es5', ':build:table:ngc', ':build:table:inline', ':build:table:rollup:umd',
+));
+
+task(':build:table:bundle:esm', sequenceTask(
+  ':build:table:ts:es6', ':build:table:inline', ':build:table:rollup:esm',
 ));
 
 /** Copies all component assets to the build output. */
